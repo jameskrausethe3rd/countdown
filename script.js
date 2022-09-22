@@ -20,15 +20,22 @@ function countDown() {
                                                 <span class="timeTitle">Minutes</span>`;
     document.querySelector('.seconds').innerHTML = `<span class="time">${s}</span>
                                                 <span class="timeTitle">Seconds</span>`;
-    // document.querySelector('.days').innerHTML = d;
-    // document.querySelector('.hours').innerHTML = h;
-    // document.querySelector('.minutes').innerHTML = m;
-    // document.querySelector('.seconds').innerHTML = s;
-    setTimeout(countDown, 1000);
+    updateSeconds();
 }
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
+}
+function updateSeconds() {
+    var arrival = new Date();
+    var currentTime = new Date();
+    arrival.setHours(7, 54, 59, 0)
+    arrival.setUTCFullYear(2023, 2, 23);
+    let s = Math.abs(currentTime.getSeconds() - arrival.getSeconds());
+    s = checkTime(s);
+    document.querySelector('.seconds').innerHTML = `<span class="time">${s}</span>
+                                                <span class="timeTitle">Seconds</span>`;
+    setTimeout(updateSeconds, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
