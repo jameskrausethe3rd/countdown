@@ -1,9 +1,13 @@
 function countDown() {
+    updateTime();
+    updateSeconds();
+}
+function updateTime() {
     var arrival = new Date();
     var currentTime = new Date();
     arrival.setHours(7, 54, 59, 0)
     arrival.setUTCFullYear(2023, 2, 23);
-    let month = Math.abs(currentTime.getMonth() - arrival.getMonth());
+    let month = Math.abs((((arrival.getFullYear() - currentTime.getFullYear()) * 12) - currentTime.getMonth() + arrival.getMonth()));
     let d = Math.abs(currentTime.getDate() - arrival.getDate());
     let h = Math.abs(currentTime.getHours() - arrival.getHours());
     let m = Math.abs(currentTime.getMinutes() - arrival.getMinutes());
@@ -20,8 +24,8 @@ function countDown() {
                                                 <span class="timeTitle">Minutes</span>`;
     document.querySelector('.seconds').innerHTML = `<span class="time">${s}</span>
                                                 <span class="timeTitle">Seconds</span>`;
-    updateSeconds();
 }
+
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
@@ -33,9 +37,14 @@ function updateSeconds() {
     arrival.setUTCFullYear(2023, 2, 23);
     let s = Math.abs(currentTime.getSeconds() - arrival.getSeconds());
     s = checkTime(s);
-    document.querySelector('.seconds').innerHTML = `<span class="time">${s}</span>
-                                                <span class="timeTitle">Seconds</span>`;
+    secondsElement = document.querySelector('.seconds');
+    secondsElement.innerHTML = `<span class="time">${s}</span>
+                                <span class="timeTitle">Seconds</span>`;
+    if ((secondsElement.querySelector('.time').innerHTML) == "59"){
+        updateTime();
+    }
     setTimeout(updateSeconds, 1000);
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
