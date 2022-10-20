@@ -6,7 +6,7 @@ function updateTime() {
     var arrival = new Date();
     var currentTime = new Date();
     arrival.setHours(7, 54, 59, 0)
-    arrival.setUTCFullYear(2023, 2, 23);
+    arrival.setUTCFullYear(2023, 1, 23);
     let month = Math.abs((((arrival.getFullYear() - currentTime.getFullYear()) * 12) - currentTime.getMonth() + arrival.getMonth()));
     let d = Math.abs(currentTime.getDate() - arrival.getDate());
     let h = Math.abs(currentTime.getHours() - arrival.getHours());
