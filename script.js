@@ -6,11 +6,16 @@ function updateTime() {
     var arrival = new Date();
     var currentTime = new Date();
     arrival.setHours(7, 54, 59, 0)
-    arrival.setUTCFullYear(2023, 2, 23);
-    let month = Math.abs((((arrival.getFullYear() - currentTime.getFullYear()) * 12) - currentTime.getMonth() + arrival.getMonth()));
-    let d = Math.abs(currentTime.getDate() - arrival.getDate());
-    let h = Math.abs(currentTime.getHours() - arrival.getHours());
-    let m = Math.abs(currentTime.getMinutes() - arrival.getMinutes());
+    arrival.setUTCFullYear(2023, 1, 23);
+    // let month = Math.abs((((arrival.getFullYear() - currentTime.getFullYear()) * 12) - currentTime.getMonth() + arrival.getMonth()));
+    let month = (11 - ((12 - arrival.getMonth()) - (12 - currentTime.getMonth())))
+    var lastDayOfMonth = new Date(currentTime.getFullYear(), currentTime.getMonth()+1, 0);
+
+    // let d = Math.abs(currentTime.getDate() - arrival.getDate());
+    let d = lastDayOfMonth.getDate() - currentTime.getDate() + arrival.getDate()
+    //console.log(arrival.getDate())
+    let h = Math.abs(arrival.getHours() - currentTime.getHours());
+    let m = Math.abs(arrival.getMinutes() - currentTime.getMinutes());
     let s = Math.abs(currentTime.getSeconds() - arrival.getSeconds());
     m = checkTime(m);
     s = checkTime(s);
