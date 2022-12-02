@@ -7,12 +7,15 @@ function updateTime() {
     var currentTime = new Date();
     arrival.setHours(7, 54, 59, 0)
     arrival.setUTCFullYear(2023, 1, 23);
-    // let month = Math.abs((((arrival.getFullYear() - currentTime.getFullYear()) * 12) - currentTime.getMonth() + arrival.getMonth()));
-    let month = (11 - ((12 - arrival.getMonth()) - (12 - currentTime.getMonth())))
+    let month = Math.abs((((arrival.getFullYear() - currentTime.getFullYear()) * 12) - currentTime.getMonth() + arrival.getMonth()));
+    // let month = (11 - ((12 - arrival.getMonth()) - (12 - currentTime.getMonth())))
     var lastDayOfMonth = new Date(currentTime.getFullYear(), currentTime.getMonth()+1, 0);
 
-    // let d = Math.abs(currentTime.getDate() - arrival.getDate());
-    let d = lastDayOfMonth.getDate() - currentTime.getDate() + arrival.getDate()
+    let d = Math.abs(currentTime.getDate() - arrival.getDate());
+    //let d = lastDayOfMonth.getDate() - (currentTime.getDate() + arrival.getDate())
+    console.log(lastDayOfMonth.getDate());
+    console.log(currentTime.getDate());
+    console.log(arrival.getDate());
     //console.log(arrival.getDate())
     let h = Math.abs(arrival.getHours() - currentTime.getHours());
     let m = Math.abs(arrival.getMinutes() - currentTime.getMinutes());
