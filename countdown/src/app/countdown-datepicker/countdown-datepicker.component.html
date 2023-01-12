@@ -1,0 +1,24 @@
+<!-- <mat-form-field appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+      <input matStartDate placeholder="Start date" (dateChange)="startDateChangeEvent($event)" formControlName="start">
+      <input matEndDate placeholder="End date" (dateChange)="endDateChangeEvent($event)" formControlName="end">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field> -->
+  <div class="card-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-form-field appearance="fill" [formGroup]="selectedDate">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" (dateChange)="dateChangedEvent($event)" formControlName="date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-card-header>
+      <button mat-raised-button color="primary" (click)="openNameChangeDialog()"*ngIf="datePickerDate != ''">Change Name</button>
+      <button mat-raised-button color="warn" (click)="resetDatepicker()" *ngIf="datePickerDate != ''">Reset</button>
+    </mat-card>
+  </div>
+  <router-outlet></router-outlet>
